@@ -1,266 +1,478 @@
-# 🛍️ E-Commerce Customer & Revenue Analytics Dashboard
+# E-Commerce Sales Analytics Dashboard  
+### End-to-End Business Intelligence Project | Power BI + SQL + Python + AWS
 
-## 📌 Project Overview
-
-This project is a comprehensive end-to-end e-commerce analytics case study focused on understanding **customer behavior, revenue drivers, retention impact, and product profitability**.
-
-The analysis evaluates the complete customer lifecycle — from initial visit through repeat purchases — to uncover **revenue optimization opportunities, retention strategies, and growth drivers**.
+![Executive Summary](assets/executive_summary.png)
 
 ---
 
-## 🎯 Business Objective
+# 📌 Project Overview
 
-The e-commerce business shows strong transaction volume but faces challenges in **maximizing customer lifetime value and understanding retention impact on revenue**.
+This project is a complete end-to-end E-Commerce Analytics solution built using **Power BI, SQL, Python, AWS S3, and Amazon Athena** to analyze business performance, customer behavior, customer retention, product profitability, and seller performance using **50,000+ transactional records**.
 
-### Key Goals:
-- Identify high-value customer segments and revenue drivers  
-- Measure the impact of retention on long-term revenue  
-- Optimize product and category profitability  
-- Improve conversion funnel efficiency  
-- Shift focus from transaction volume → customer value  
+The dashboard was designed to simulate a real-world analytics environment used by modern e-commerce and product-based companies such as Amazon, Flipkart, Myntra, and Walmart.
+
+The solution transforms raw transactional data into actionable business insights for leadership, operations, marketing, and product teams.
 
 ---
 
-## 🧠 Analytical Approach
+# 🎯 Business Objective
 
-The analysis is structured across key revenue dimensions:
+The primary objective of this project was to help business stakeholders answer critical business questions such as:
 
-- **Customer Segmentation** → RFM analysis & customer lifetime value  
-- **Retention Analysis** → Cohort retention tracking & repeat purchase behavior  
-- **Revenue Optimization** → AOV, product profitability, category performance  
-- **Conversion Funnel** → Visit → Add-to-Cart → Purchase analysis  
-- **Product Performance** → Product-level revenue and margin analysis  
-
----
-
-## 🧱 Data Architecture
-
-### 📊 Core Analytics Tables
-
-- `customers` → Customer demographics and acquisition source  
-- `transactions` → Order-level transaction details  
-- `products` → Product information and pricing  
-- `categories` → Product category hierarchy  
-- `order_items` → Item-level order breakdown  
-- `user_sessions` → Customer browsing and engagement  
-- `funnel_events` → Conversion funnel tracking (visit, cart, purchase)  
+- How is revenue growing Month-over-Month (MoM) and Year-over-Year (YoY)?
+- Which products, categories, and regions generate the highest revenue?
+- How do discounts affect profitability and sales performance?
+- Which customers contribute most to business growth?
+- How strong is customer retention and repeat purchase behavior?
+- Which sellers and products perform best across regions?
+- How can leadership identify growth opportunities using data?
+- How can cloud-based analytics improve scalability and reporting efficiency?
 
 ---
 
-## 📊 Key Analysis Performed
+# 🛠 Tech Stack
 
-- Customer segmentation using RFM analysis  
-- Cohort-based retention analysis  
-- Funnel analysis from visit to purchase  
-- Revenue metrics: AOV, LTV, CAC, LTV/CAC ratio  
-- Product and category profitability analysis  
-- Regional and segment performance comparison  
-
----
-
-## 🔍 Key Insights
-
-### 1. Repeat Customers Drive Majority of Revenue
-- Repeat customers contribute **60-70% of total revenue**  
-- Average repeat customer LTV: **5-8x higher** than first-time buyers  
-
-👉 **Opportunity:** Retention programs provide higher ROI than acquisition
+| Tool / Technology | Purpose |
+|---|---|
+| Python (Pandas, NumPy) | Data Cleaning & Preprocessing |
+| SQL | Data Validation & Business Analysis |
+| AWS S3 | Cloud Storage for Raw & Processed Data |
+| Amazon Athena | Cloud SQL Query Engine |
+| Power BI | Dashboard Development & Visualization |
+| DAX | KPI Calculations & Time Intelligence |
+| Power Query | Data Transformation |
+| Star Schema Modeling | Scalable BI Architecture |
+| Dynamic Row-Level Security (RLS) | Secure Region-Based Data Access |
 
 ---
 
-### 2. Cohort Retention Stabilizes After Month 3
-- Month 1 retention: **20-25%**  
-- Month 3+ retention: **12-15%** (stabilizes)  
+# ☁️ Cloud Architecture
 
-👉 **Opportunity:** Focus on early-stage engagement (Days 1-30) for maximum impact
+This project incorporates AWS cloud services to simulate a modern cloud-based analytics workflow used in real organizations.
 
----
+## AWS Services Used
 
-### 3. Significant Funnel Drop at Add-to-Cart → Purchase
-- Visit → Cart: **8-12% conversion**  
-- Cart → Purchase: **25-35% conversion**  
+### 🔹 Amazon S3
+Used as a centralized cloud storage layer for storing:
 
-👉 **Opportunity:** Cart abandonment recovery can significantly boost revenue
+- Raw transactional datasets
+- Cleaned datasets
+- Processed analytical files
+- CSV exports for reporting
 
----
+### 🔹 Amazon Athena
+Used to run SQL queries directly on data stored in S3 without requiring a traditional database server.
 
-### 4. Product Category Performance Varies Significantly
-- Top categories: **35-40% profit margin**  
-- Low performers: **5-10% profit margin**  
+Athena was used for:
 
-👉 **Opportunity:** Shift product mix toward high-margin categories
+- Revenue analysis
+- Customer segmentation
+- KPI validation
+- Product performance analysis
+- Repeat customer analysis
+- Retention-related queries
 
----
+## Cloud Workflow
 
-### 5. AOV Increases with Customer Maturity
-- New customers: **$30-50 AOV**  
-- Repeat customers (3+ orders): **$75-120 AOV**  
-
-👉 **Opportunity:** Upselling and cross-selling programs drive revenue growth
-
----
-
-### 6. Regional Performance Shows Optimization Potential
-- Top regions: **20-25% higher retention rates**  
-- Emerging regions: **5-10% lower AOV**  
-
-👉 **Opportunity:** Scale successful regional strategies
+Raw Data → Python Cleaning → Upload to AWS S3 → Query using Athena → Connect to Power BI → Dashboard Reporting
 
 ---
 
-## 💣 Root Cause
+# 📂 Dataset Information
 
-> **Primary Challenge:** Low early-stage retention and cart abandonment limiting revenue realization from acquired customers.
+The project uses a relational multi-table dataset designed like a real-world e-commerce data warehouse.
 
-> **Secondary Challenge:** Suboptimal product mix with over-representation of low-margin categories.
+## Tables Used
 
----
-
-## 💡 Recommendations
-
-### 🚀 Implement Early Retention Strategy (Highest Impact)
-- Post-purchase engagement (Day 1, Day 7, Day 30)  
-- First-repeat purchase incentives  
-- Personalized product recommendations  
-
-**Why:**  
-Improves Month 1-3 retention by 20-30% → increases LTV by 30-50%  
-
----
-
-### 🚀 Launch Cart Abandonment Recovery Program
-- Automated email reminders  
-- Limited-time incentives  
-- Simplified checkout process  
-
-**Why:**  
-Even 10-15% recovery rate → +5-10% revenue increase  
+| Table Name | Description |
+|---|---|
+| customers | Customer details and signup information |
+| orders | Order-level transactional data |
+| order_items | Product-level order transactions |
+| products | Product category and pricing details |
+| sellers | Seller and regional information |
+| dim_date | Calendar/date dimension |
+| dim_region | Regional dimension |
+| region_security_table | Used for Dynamic Row-Level Security |
 
 ---
 
-### 🚀 Optimize Product Portfolio
-- Increase high-margin product visibility  
-- Reduce low-margin SKUs  
-- Develop bundle offers  
+# 🧩 Data Modeling
 
-**Why:**  
-Margin improvement of 2-5% → significant profit increase  
+A professional **Star Schema Data Model** was implemented for scalable analytics and optimized dashboard performance.
 
----
+## Model Highlights
 
-### 🚀 Invest in Regional Growth Programs
-- Scale top-performing region strategies  
-- Localize marketing for emerging regions  
-- Regional inventory optimization  
-
-**Why:**  
-Brings emerging regions to top-performer levels → 15-25% revenue growth  
+- One-to-Many relationships
+- Dimension & Fact table separation
+- Dedicated Date Dimension
+- Region Security Mapping
+- Optimized filtering performance
+- Time Intelligence support using DAX
+- Scalable cloud-query architecture using Athena
 
 ---
 
-### 🚀 Enhance Upselling & Cross-Selling
-- Personalized product recommendations  
-- AI-powered next-product suggestions  
-- Bundle deals for repeat customers  
+# 🧹 Data Cleaning & Preparation
 
-**Why:**  
-Increases AOV by 15-25%, especially for repeat customers  
+Python (Pandas & NumPy) was used for preprocessing and quality checks.
 
----
+## Cleaning Steps
 
-### 🚀 Refine Customer Segmentation Strategy
-- Develop segment-specific retention campaigns  
-- Tailor product recommendations by segment  
-- Premium tier loyalty programs  
-
-**Why:**  
-Segment-specific strategies improve retention by 10-20%  
+- Removed duplicates
+- Handled missing/null values
+- Fixed inconsistent data types
+- Standardized text fields
+- Validated order-level calculations
+- Created derived business metrics
+- Performed data integrity checks
 
 ---
 
-## 📊 Expected Business Impact
+# 🧠 SQL & Athena Analysis
 
-- Repeat purchase rate: **Current → +20-30%** through early retention  
-- Average order value: **+15-25%** through upselling programs  
-- Cart abandonment recovery: **+5-10%** revenue from recovery program  
-- Product margin improvement: **+2-5%** through portfolio optimization  
-- Overall revenue growth: **+30-50%** through combined initiatives  
-- Customer LTV increase: **+40-60%** through retention focus  
+SQL and Amazon Athena were used for:
 
----
+- Multi-table joins
+- KPI validation
+- Revenue analysis
+- Customer segmentation
+- Repeat customer analysis
+- Delivery & cancellation analysis
+- Seller performance validation
+- Product-level aggregation
+- Retention-related calculations
 
-## 📊 Dashboard Features
+## Example Business Metrics
 
-The Power BI dashboard includes:
-   - Executive Overview (KPIs & Revenue Metrics)  
-   - Customer Segmentation & RFM Analysis  
-   - Retention & Cohort Analysis  
-   - Funnel Analysis (Visit → Purchase)  
-   - Product Category Performance  
-
----
-
-### 🔥 Advanced Features Implemented
-
-- Multi-page interactive dashboard  
-- RFM scoring system with dynamic segmentation  
-- Cohort retention heatmaps  
-- Funnel waterfall visualizations  
-- Dynamic KPI cards with trend indicators  
-- Drill-down capabilities for detailed analysis  
+- Total Revenue
+- Gross Profit
+- Average Order Value (AOV)
+- Repeat Customer %
+- Annual Churn Rate
+- Gross Margin %
+- Delivery Rate
+- Cancel Rate
+- Customer Lifetime Value (LTV)
 
 ---
 
-## 🧱 Data Stack
+# 🔐 Dynamic Row-Level Security (Dynamic RLS)
 
-- **SQL/MySQL** – Data cleaning, aggregations, KPI calculations  
-- **Python** – Data validation and preparation  
-- **AWS S3** – Data lake storage  
-- **Amazon Athena** – SQL analysis on S3  
-- **Power BI** – Dashboard and business intelligence  
+Implemented **Dynamic Row-Level Security (RLS)** in Power BI to provide secure region-based data access dynamically based on logged-in users.
 
----
+## Dynamic RLS Workflow
 
-## 📸 Dashboard Preview
+- Created a `region_security_table` containing:
+  - User Email
+  - Assigned Region
 
-### 🔹 Executive Overview
-<p align="center">
-  <img src="images/overview.png" width="900" alt="Executive Overview Dashboard">
-</p>
+- Established relationship between:
+  - `region_security_table`
+  - `dim_region`
 
----
+- Applied Dynamic RLS using DAX:
 
-### 🔹 Customer Segmentation & RFM Analysis
-<p align="center">
-  <img src="images/segmentation.png" width="900" alt="Customer Segmentation Dashboard">
-</p>
+```DAX
+[User_Email] = USERPRINCIPALNAME()
+```
 
----
+## Business Purpose of Dynamic RLS
 
-### 🔹 Retention & Cohort Analysis
-<p align="center">
-  <img src="images/retention.png" width="900" alt="Retention Analysis Dashboard">
-</p>
+Dynamic RLS allows organizations to:
 
----
+- Restrict users to view only their assigned regional data
+- Improve dashboard security and governance
+- Enable secure multi-user reporting environments
+- Simulate enterprise-level Power BI deployment scenarios
 
-### 🔹 Conversion Funnel Analysis
-<p align="center">
-  <img src="images/funnel.png" width="900" alt="Funnel Analysis Dashboard">
-</p>
+## Example Use Case
 
----
+| User | Accessible Region |
+|---|---|
+| north_manager@company.com | North |
+| west_manager@company.com | West |
+| central_manager@company.com | Central |
 
-### 🔹 Product Category Performance
-<p align="center">
-  <img src="images/products.png" width="900" alt="Product Performance Dashboard">
-</p>
+This ensures each regional manager can only access their own business data while leadership teams retain full visibility.
 
 ---
 
-## 📫 Connect With Me
+# 📊 Dashboard Features
 
-- **LinkedIn:** https://www.linkedin.com/in/ankit5517  
-- **Email:** ankitkumar473mail@gmail.com
+The dashboard contains multiple business-focused pages with interactive analytics.
 
 ---
+
+# 📈 Dashboard Pages
+
+# 1️⃣ Executive Summary
+
+Provides a high-level business overview for leadership teams.
+
+## Key KPIs
+
+- Gross Profit
+- Net Revenue
+- Total Orders
+- Customers
+- Gross Margin %
+- Average Order Value (AOV)
+
+## Key Insights
+
+- Central region contributes the highest order volume
+- Revenue distribution is balanced across major cities
+- Gross margin remains strong at ~31%
+- Revenue performance is stable across multiple categories
+- Top products contribute a major portion of total revenue
+
+---
+
+# 2️⃣ Sales Performance Dashboard
+
+Focused on revenue and operational performance tracking.
+
+## Analysis Included
+
+- Sales trend analysis
+- Payment type analysis
+- Promo code performance
+- Customer segment revenue
+- Monthly order trends
+- Revenue growth tracking
+
+## Key Insights
+
+- Non-prime customers generated higher total revenue
+- Wallet and card payments dominate transactions
+- Promo codes contributed significant incremental revenue
+- Sales showed seasonal fluctuations across months
+- Order volume increased during promotional periods
+
+---
+
+# 3️⃣ Customer Insights Dashboard
+
+Focused on retention, LTV, churn, and customer growth.
+
+## Metrics Included
+
+- Average Customer Lifetime Value (LTV)
+- Repeat Customer %
+- Annual Churn Rate
+- Customer Growth %
+- New Customer Trend
+- Regional Customer Performance
+
+## Key Insights
+
+- Repeat customers contribute the majority of total revenue
+- Customer retention is a strong revenue driver
+- LTV growth indicates long-term customer value
+- Churn fluctuations reveal customer lifecycle drop-off periods
+- Central and East regions show stronger customer engagement
+
+---
+
+# 4️⃣ Product & Seller Performance Dashboard
+
+Focused on product profitability and seller efficiency.
+
+## Analysis Included
+
+- Top-selling products
+- Category profitability
+- Seller ranking
+- Discount impact simulation
+- Product revenue contribution
+- Gross margin analysis
+
+## Key Insights
+
+- Electronics generated the highest revenue
+- Some categories showed higher discount dependency
+- Top sellers significantly outperform average sellers
+- Discount optimization can improve margin efficiency
+- Seller ratings strongly correlate with sales performance
+
+---
+
+# ⚡ Advanced Power BI Features
+
+## Implemented Features
+
+- Dynamic KPI Selection
+- Field Parameters
+- Drill-through Navigation
+- Interactive Slicers
+- Custom Page Navigation
+- Dynamic Titles
+- YoY & MoM Growth Analysis
+- Conditional Formatting
+- Tooltip Enhancements
+- Dynamic Row-Level Security (Dynamic RLS)
+
+---
+
+# 💼 Business Impact
+
+This dashboard enables business teams to:
+
+- Monitor business performance in real time
+- Query large datasets efficiently using Athena
+- Store scalable datasets securely in AWS S3
+- Identify high-value customers
+- Optimize pricing and discount strategies
+- Improve customer retention
+- Track seller efficiency
+- Analyze product profitability
+- Support data-driven business decisions
+
+---
+
+# 🚀 Strategic Recommendations
+
+# 1️⃣ Improve Customer Retention
+
+Repeat customers contribute a significant portion of revenue.
+
+## Recommended Actions
+
+- Launch loyalty programs
+- Create personalized recommendations
+- Run email remarketing campaigns
+- Reduce time between first and second purchase
+
+---
+
+# 2️⃣ Optimize Discount Strategy
+
+Some categories rely heavily on discounts.
+
+## Recommended Actions
+
+- Introduce targeted promotions
+- Avoid excessive blanket discounts
+- Focus on margin-protected campaigns
+- Monitor category-wise discount efficiency
+
+---
+
+# 3️⃣ Expand High-Performing Categories
+
+Electronics and beauty categories show strong revenue contribution.
+
+## Recommended Actions
+
+- Increase inventory availability
+- Improve seller onboarding
+- Run category-specific campaigns
+- Expand premium product offerings
+
+---
+
+# 4️⃣ Improve Seller Quality Monitoring
+
+Top sellers outperform significantly.
+
+## Recommended Actions
+
+- Build seller performance scorecards
+- Monitor seller ratings and cancellations
+- Reward high-performing sellers
+- Reduce operational inefficiencies
+
+---
+
+# 5️⃣ Strengthen Customer Lifecycle Analytics
+
+Churn patterns indicate lifecycle drop-off periods.
+
+## Recommended Actions
+
+- Trigger retention campaigns earlier
+- Monitor inactive customer windows
+- Build predictive churn models
+- Improve onboarding experience
+
+---
+
+# 🔑 Key Skills Demonstrated
+
+- Business Intelligence
+- Data Modeling
+- SQL Analytics
+- Amazon Athena
+- AWS S3
+- Power BI Dashboarding
+- DAX Calculations
+- Customer Analytics
+- Product Analytics
+- Revenue Analysis
+- KPI Design
+- Data Cleaning
+- Data Storytelling
+- Dynamic Row-Level Security (RLS)
+- Cloud-Based Analytics Workflow
+
+---
+
+# 📷 Dashboard Screenshots
+
+## Executive Summary
+
+![Executive Summary](assets/executive_summary.png)
+
+---
+
+## Sales Performance
+
+![Sales Performance](assets/sales_performance.png)
+
+---
+
+## Customer Insights
+
+![Customer Insights](assets/customer_insights.png)
+
+---
+
+## Product & Seller Performance
+
+![Product Performance](assets/product_seller_performance.png)
+
+---
+
+## Data Model
+
+![Data Model](assets/data_model.png)
+
+---
+
+# 👨‍💻 Author
+
+## Ankit Kumar  
+Aspiring Data Analyst | Power BI | SQL | Python | AWS | Business Analytics
+
+- GitHub: https://github.com/ankitkumargaya
+- LinkedIn: Add Your LinkedIn Profile Here
+
+---
+
+# 📌 Final Conclusion
+
+This project demonstrates how raw e-commerce transactional data can be transformed into a scalable business intelligence solution capable of supporting executive-level decision making.
+
+The dashboard combines:
+
+- Data Engineering Concepts
+- Cloud-Based Analytics
+- Business Intelligence
+- Customer Analytics
+- Product Analytics
+- Advanced Power BI Development
+- SQL & Athena Querying
+- Real-World KPI Tracking
+
+This project reflects practical analytics skills used in modern product-based and e-commerce organizations.
