@@ -423,25 +423,25 @@ Churn patterns indicate lifecycle drop-off periods.
 
 ## Executive Summary
 
-![Executive Summary](assets/executive_summary.png)
+![Executive Summary](images/executive_summary.png)
 
 ---
 
 ## Sales Performance Dashboard
 
-![Sales Performance](assets/sales_performance.png)
+![Sales Performance](images/sales_performance.png)
 
 ---
 
 ## Customer Insights Dashboard
 
-![Customer Insights](assets/customer_insights.png)
+![Customer Insights](images/customer_insights.png)
 
 ---
 
 ## Product & Seller Performance Dashboard
 
-![Product & Seller Performance](assets/product_seller_performance.png)
+![Product & Seller Performance](images/product_seller_performance.png)
 
 ---
 
@@ -449,7 +449,7 @@ Churn patterns indicate lifecycle drop-off periods.
 
 This drill-through page enables detailed product-level analysis including revenue contribution, seller performance, order trends, profitability, and customer purchasing behavior.
 
-![Product Drillthrough](assets/product_drillthrough.png)
+![Product Drillthrough](images/product_drillthrough.png)
 
 ---
 
@@ -457,7 +457,7 @@ This drill-through page enables detailed product-level analysis including revenu
 
 This image shows the centralized measures table used for managing reusable DAX measures and KPI calculations across the dashboard.
 
-![Measures Table](assets/measures_tables.png)
+![Measures Table](images/measures_tables.png)
 
 ---
 
@@ -465,8 +465,7 @@ This image shows the centralized measures table used for managing reusable DAX m
 
 The project follows a professional Star Schema architecture optimized for scalable analytics and performance.
 
-![Data Model](assets/data_model.png)
-
+![Data Model](images/data_model.png)
 ---
 
 # 👨‍💻 Author
