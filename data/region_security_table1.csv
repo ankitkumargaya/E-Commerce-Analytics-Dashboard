@@ -1,0 +1,7 @@
+RegionID,Region,ManagerName,ManagerEmail,Role,IsAdmin
+1,North,Rohit Sharma,rohit.sharma@company.com,Manager,FALSE
+2,South,Priya Singh,priya.singh@company.com,Manager,FALSE
+3,East,Amit Kumar,amit.kumar@company.com,Manager,FALSE
+4,West,Sneha Patel,sneha.patel@company.com,Manager,FALSE
+5,Central,Admin User,admin@company.com,Admin,TRUE
+6,South,Ankit kumar,ankit.@company.com,Manager,FALSE
