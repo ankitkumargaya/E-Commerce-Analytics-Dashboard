@@ -1,7 +1,7 @@
 # E-Commerce Sales Analytics Dashboard  
 ### End-to-End Business Intelligence Project | Power BI + SQL + Python + AWS
 
-![Executive Summary](assets/executive_summary.png)
+![Executive Summary](images/executive_summary.png)
 
 ---
 
