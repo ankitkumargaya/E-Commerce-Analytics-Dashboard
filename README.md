@@ -304,6 +304,7 @@ Focused on product profitability and seller efficiency.
 
 - Dynamic KPI Selection
 - Field Parameters
+- Drill-down Functionality
 - Drill-through Navigation
 - Interactive Slicers
 - Custom Page Navigation
