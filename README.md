@@ -474,7 +474,7 @@ The project follows a professional Star Schema architecture optimized for scalab
 Aspiring Data Analyst | Power BI | SQL | Python | AWS | Business Analytics
 
 - GitHub: https://github.com/ankitkumargaya
-- LinkedIn: Add Your LinkedIn Profile Here
+- LinkedIn: https://www.linkedin.com/in/ankit5517
 
 ---
 
