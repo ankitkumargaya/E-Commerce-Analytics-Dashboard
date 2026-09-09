@@ -1,496 +1,254 @@
-# E-Commerce Sales Analytics Dashboard  
-### End-to-End Business Intelligence Project | Power BI + SQL + Python + AWS
+# 🚀 Amazon E-Commerce Revenue, Customer & Product Analytics
+### Senior Data Analytics Review | Databricks + Spark SQL + Power BI + DAX
 
-![Executive Summary](images/executive_summary.png)
+<p align="center">
+<img src="images/executive_summary.png" width="1000">
+</p>
 
----
+> ⚠️ **Maintenance note:** The screenshots below are from the project's prior dataset version. This README's numbers reflect the current, larger dataset ($761.18M revenue / 120K customers / Databricks pipeline). Replace `executive_summary.png`, `sales_performance.png`, `customer_insights.png`, `product_seller_performance.png`, and add `operational_matrix.png` with current exports before publishing.
 
-# 📌 Project Overview
-
-This project is a complete end-to-end E-Commerce Analytics solution built using **Power BI, SQL, Python, AWS S3, and Amazon Athena** to analyze business performance, customer behavior, customer retention, product profitability, and seller performance using **50,000+ transactional records**.
-
-The dashboard was designed to simulate a real-world analytics environment used by modern e-commerce and product-based companies such as Amazon, Flipkart, Myntra, and Walmart.
-
-The solution transforms raw transactional data into actionable business insights for leadership, operations, marketing, and product teams.
-
----
-
-# 🎯 Business Objective
-
-The primary objective of this project was to help business stakeholders answer critical business questions such as:
-
-- How is revenue growing Month-over-Month (MoM) and Year-over-Year (YoY)?
-- Which products, categories, and regions generate the highest revenue?
-- How do discounts affect profitability and sales performance?
-- Which customers contribute most to business growth?
-- How strong is customer retention and repeat purchase behavior?
-- Which sellers and products perform best across regions?
-- How can leadership identify growth opportunities using data?
-- How can cloud-based analytics improve scalability and reporting efficiency?
+<p align="center">
+<img src="https://img.shields.io/badge/Databricks-Spark%20SQL-FF3621?style=flat-square&logo=databricks&logoColor=white">
+<img src="https://img.shields.io/badge/Power%20BI-Dashboard-F2C811?style=flat-square&logo=powerbi&logoColor=black">
+<img src="https://img.shields.io/badge/DAX-Time%20Intelligence-1F3864?style=flat-square">
+<img src="https://img.shields.io/badge/Star%20Schema-Modeling-2E7D32?style=flat-square">
+<img src="https://img.shields.io/badge/Framework-What→Why→Action→Risk-1F3864?style=flat-square">
+</p>
 
 ---
 
-# 🛠 Tech Stack
+## 🎛️ Dashboard Page Switcher
+### 👇 Click any page to jump straight to it
 
-| Tool / Technology | Purpose |
-|---|---|
-| Python (Pandas, NumPy) | Data Cleaning & Preprocessing |
-| SQL | Data Validation & Business Analysis |
-| AWS S3 | Cloud Storage for Raw & Processed Data |
-| Amazon Athena | Cloud SQL Query Engine |
-| Power BI | Dashboard Development & Visualization |
-| DAX | KPI Calculations & Time Intelligence |
-| Power Query | Data Transformation |
-| Star Schema Modeling | Scalable BI Architecture |
-| Dynamic Row-Level Security (RLS) | Secure Region-Based Data Access |
+<p align="center">
+<a href="#dash-exec"><img src="https://img.shields.io/badge/📊_EXECUTIVE_SUMMARY-1A237E?style=for-the-badge"></a>
+<a href="#dash-sales"><img src="https://img.shields.io/badge/📈_SALES_PERFORMANCE-B71C1C?style=for-the-badge"></a>
+<a href="#dash-customer"><img src="https://img.shields.io/badge/🧑‍🤝‍🧑_CUSTOMER_INSIGHTS-2E7D32?style=for-the-badge"></a>
+<br>
+<a href="#dash-product"><img src="https://img.shields.io/badge/🛍️_PRODUCT_%26_SELLER-6A0DAD?style=for-the-badge"></a>
+<a href="#dash-ops"><img src="https://img.shields.io/badge/🚚_OPERATIONAL_MATRIX-00796B?style=for-the-badge"></a>
+</p>
 
 ---
 
-# ☁️ Cloud Architecture
+## 📸 Dashboard Preview
 
-This project incorporates AWS cloud services to simulate a modern cloud-based analytics workflow used in real organizations.
+<a id="dash-exec"></a>
+<details open>
+<summary><b>🔹 Executive Summary</b> — p.1</summary>
+<p align="center"><img src="images/executive_summary.png" width="1000"></p>
+</details>
 
-## AWS Services Used
+<a id="dash-sales"></a>
+<details>
+<summary><b>🔹 Sales Performance</b> — p.2</summary>
+<p align="center"><img src="images/sales_performance.png" width="1000"></p>
+</details>
 
-### 🔹 Amazon S3
-Used as a centralized cloud storage layer for storing:
+<a id="dash-customer"></a>
+<details>
+<summary><b>🔹 Customer Insights</b> — p.3</summary>
+<p align="center"><img src="images/customer_insights.png" width="1000"></p>
+</details>
 
-- Raw transactional datasets
-- Cleaned datasets
-- Processed analytical files
-- CSV exports for reporting
+<a id="dash-product"></a>
+<details>
+<summary><b>🔹 Product & Seller Performance</b> — p.4</summary>
+<p align="center"><img src="images/product_seller_performance.png" width="1000"></p>
+</details>
 
-### 🔹 Amazon Athena
-Used to run SQL queries directly on data stored in S3 without requiring a traditional database server.
-
-Athena was used for:
-
-- Revenue analysis
-- Customer segmentation
-- KPI validation
-- Product performance analysis
-- Repeat customer analysis
-- Retention-related queries
-
-## Cloud Workflow
-
-Raw Data → Python Cleaning → Upload to AWS S3 → Query using Athena → Connect to Power BI → Dashboard Reporting
-
----
-
-# 📂 Dataset Information
-
-The project uses a relational multi-table dataset designed like a real-world e-commerce data warehouse.
-
-## Tables Used
-
-| Table Name | Description |
-|---|---|
-| customers | Customer details and signup information |
-| orders | Order-level transactional data |
-| order_items | Product-level order transactions |
-| products | Product category and pricing details |
-| sellers | Seller and regional information |
-| dim_date | Calendar/date dimension |
-| dim_region | Regional dimension |
-| region_security_table | Used for Dynamic Row-Level Security |
+<a id="dash-ops"></a>
+<details>
+<summary><b>🔹 Operational Matrix</b> — p.5 (returns, delivery, brand-level detail)</summary>
+<p align="center"><img src="images/operational_matrix.png" width="1000"></p>
+</details>
 
 ---
 
-# 🧩 Data Modeling
-
-A professional **Star Schema Data Model** was implemented for scalable analytics and optimized dashboard performance.
-
-## Model Highlights
-
-- One-to-Many relationships
-- Dimension & Fact table separation
-- Dedicated Date Dimension
-- Region Security Mapping
-- Optimized filtering performance
-- Time Intelligence support using DAX
-- Scalable cloud-query architecture using Athena
+## 📑 Table of Contents
+[Dashboard Switcher](#-dashboard-page-switcher) · [Headline KPIs](#-headline-kpi-snapshot) · [Objective](#-business-objective) · [Scope Map](#-analytical-scope-map-why-the-same-metric-shows-three-different-numbers) · [Deep Analysis](#-deep-analysis-whatwhyactionrisk) · [Priority Matrix](#-recommendation-priority-matrix) · [Suggested KPIs](#-suggested-executive-kpis-for-the-next-dashboard-version) · [Author](#-author)
 
 ---
 
-# 🧹 Data Cleaning & Preparation
+## ⚡ Headline KPI Snapshot
 
-Python (Pandas & NumPy) was used for preprocessing and quality checks.
+| Scope | Net Revenue | Gross Profit | Gross Margin | Orders | AOV | Customers |
+|---|---|---|---|---|---|---|
+| **2023–2025 Overall** | $761.18M | $117.22M | 15.4% | ≈1.0M | $746.58 | 120K |
+| **2025 YTD (Jan–Aug)** | $271.98M | $41.86M | 15.39% | 430K | $745.04 | 117K |
+| **August 2025** | $33.77M | $5.19M | 15.38% | 53K | $746.78 | 43K |
 
-## Cleaning Steps
-
-- Removed duplicates
-- Handled missing/null values
-- Fixed inconsistent data types
-- Standardized text fields
-- Validated order-level calculations
-- Created derived business metrics
-- Performed data integrity checks
+*August 2025 vs. prior month: revenue -2.7%, orders -3.6%, AOV +0.5%. August vs. prior year: revenue +16.9%, gross profit +14.6% (margin -0.2pt YoY).*
 
 ---
 
-# 🧠 SQL & Athena Analysis
+## 🎯 Business Objective
 
-SQL and Amazon Athena were used for:
+> Understand revenue trend across a $761M, 3-year e-commerce dataset; identify high-performing regions and product categories; analyze customer behavior and retention; and assess discount and delivery performance — while explicitly separating slicer-responsive metrics from intentionally time-independent ones, so executives never mistake a scope difference for a data-quality failure.
 
-- Multi-table joins
-- KPI validation
-- Revenue analysis
-- Customer segmentation
-- Repeat customer analysis
-- Delivery & cancellation analysis
-- Seller performance validation
-- Product-level aggregation
-- Retention-related calculations
-
-## Example Business Metrics
-
-- Total Revenue
-- Gross Profit
-- Average Order Value (AOV)
-- Repeat Customer %
-- Annual Churn Rate
-- Gross Margin %
-- Delivery Rate
-- Cancel Rate
-- Customer Lifetime Value (LTV)
+**Executive Summary:** The business is scaling strongly with a remarkably stable order-economics profile (AOV within $745–$747 across every time scope). The two priorities that actually matter now are **protecting margin as revenue accelerates** and **making metric scope explicit** — because several headline numbers change dramatically depending on which time window you're looking at, and that difference is routinely mistaken for a business problem.
 
 ---
 
-# 🔐 Dynamic Row-Level Security (Dynamic RLS)
+## 🗺️ Analytical Scope Map: Why the Same Metric Shows Three Different Numbers
 
-Implemented **Dynamic Row-Level Security (RLS)** in Power BI to provide secure region-based data access dynamically based on logged-in users.
+```mermaid
+flowchart TD
+    subgraph S1["📅 2023–2025 Overall — YEAR = All"]
+        S1A["Net Revenue: $761.18M"]
+        S1B["⚠️ Repeat Rate: 99.95%<br/>(lifetime window — not comparable to below)"]
+    end
+    subgraph S2["📅 2025 YTD — YEAR = 2025"]
+        S2A["Net Revenue: $271.98M"]
+        S2B["Repeat Rate: 89.80%"]
+    end
+    subgraph S3["📅 August 2025 — Month = Aug"]
+        S3A["Net Revenue: $33.77M ▼2.7% LM · ▲16.9% LY"]
+        S3B["⚠️ Repeat Rate: 20.69%<br/>(1-month window — not a retention crash)"]
+    end
 
-## Dynamic RLS Workflow
-
-- Created a `region_security_table` containing:
-  - User Email
-  - Assigned Region
-
-- Established relationship between:
-  - `region_security_table`
-  - `dim_region`
-
-- Applied Dynamic RLS using DAX:
-
-```DAX
-[User_Email] = USERPRINCIPALNAME()
+    classDef warn fill:#fff3cd,stroke:#8a6d00,color:#8a6d00,stroke-width:2px;
+    classDef normal fill:#eef2f9,stroke:#1f3864,color:#1f3864;
+    class S1B,S3B warn;
+    class S1A,S2A,S2B,S3A normal;
 ```
 
-## Business Purpose of Dynamic RLS
+Three PDFs, three different slicer states, same field-parameter page. Read left-to-right without this map, "Repeat Rate" looks like it collapsed from 99.95% to 20.69% — read correctly, it's three different measurement windows, not one falling number.
 
-Dynamic RLS allows organizations to:
+---
 
-- Restrict users to view only their assigned regional data
-- Improve dashboard security and governance
-- Enable secure multi-user reporting environments
-- Simulate enterprise-level Power BI deployment scenarios
+## 🔬 Deep Analysis (What / Why / Action / Risk)
 
-## Example Use Case
+<details open>
+<summary><b>1️⃣ "Repeat Customer Rate" Is a Scope Artifact, Not a Retention Crash</b> &nbsp; <img src="https://img.shields.io/badge/-CRITICAL-8B1E1E?style=flat-square" alt="Critical"></summary>
 
-| User | Accessible Region |
+| | |
 |---|---|
-| north_manager@company.com | North |
-| west_manager@company.com | West |
-| central_manager@company.com | Central |
+| 📌 **WHAT** | Repeat Customer Rate reads 99.95% (all-time), 89.80% (2025 YTD), and 20.69% (August alone) — the same KPI card, three wildly different numbers. |
+| 🎯 **WHY** | These are three different measurement windows, not three snapshots of a declining trend. A one-month window mechanically produces a much lower repeat rate than a multi-year window — without explicit labeling, this reads as a collapse when it isn't one. |
+| 🛠️ **ACTION** | Publish a metric dictionary with the exact numerator, denominator, and time window for every customer KPI; make the active field-parameter and date scope visible directly in each visual's title. |
+| ⚠️ **RISK** | Unlabeled, an executive could wrongly panic over a "retention collapse" that's a scope artifact — or, just as dangerous, dismiss a real future retention problem as "just another scope issue." |
 
-This ensures each regional manager can only access their own business data while leadership teams retain full visibility.
+</details>
 
----
+<details>
+<summary><b>2️⃣ LM/LY Indicators Are Meaningless on the All-Period View</b> &nbsp; <img src="https://img.shields.io/badge/-CRITICAL-8B1E1E?style=flat-square" alt="Critical"></summary>
 
-# 📊 Dashboard Features
+| | |
+|---|---|
+| 📌 **WHAT** | The 2023–2025 overall dashboard displays Last Month / Last Year comparison cards even though no single month is selected (YEAR = All). |
+| 🎯 **WHY** | A percentage-change indicator only means something when comparing two well-defined, equivalent periods. Showing LM/LY on an all-time aggregate invites a false growth or decline narrative that isn't actually being measured. |
+| 🛠️ **ACTION** | Suppress LM comparison cards on multi-period/all-time views. Only surface LM/LY deltas on single-month-scoped pages (like the August view, where they are valid), with the scope labeled directly on the card. |
+| ⚠️ **RISK** | Low-effort fix, but skipping it risks an executive quoting a meaningless percentage in a board deck — a credibility risk larger than the fix itself. |
 
-The dashboard contains multiple business-focused pages with interactive analytics.
+</details>
 
----
+<details>
+<summary><b>3️⃣ Revenue Is Growing Faster Than Gross Profit — a Margin-Dilution Signal</b> &nbsp; <img src="https://img.shields.io/badge/-HIGH-D9822B?style=flat-square" alt="High"></summary>
 
-# 📈 Dashboard Pages
+| | |
+|---|---|
+| 📌 **WHAT** | August 2025 revenue is up 16.9% YoY, but gross profit is up only 14.6% YoY — a 0.2-point YoY decline in gross margin, on a business that otherwise holds margin at a very stable ~15.4% across every scope. |
+| 🎯 **WHY** | This is the classic growth-with-weakening-margin pattern: the business is proving it can scale revenue (a step-up from ~$12–13M/mo in 2023 to $32–35M/mo in 2025 YTD), but the next test is proving it can do that *without* diluting profitability. |
+| 🛠️ **ACTION** | Build a gross-profit bridge by category, region, and discount band to isolate exactly what's compressing margin; treat gross margin as a hard guardrail alongside every revenue growth target going forward. |
+| ⚠️ **RISK** | Ignore it, and the business could keep scaling low-margin volume. Over-correct too aggressively, and the fix could suppress the revenue momentum that's currently working. |
 
-# 1️⃣ Executive Summary
+</details>
 
-Provides a high-level business overview for leadership teams.
+<details>
+<summary><b>4️⃣ Electronics + Central Region Carry Outsized Concentration Risk</b> &nbsp; <img src="https://img.shields.io/badge/-MEDIUM-E0B84C?style=flat-square" alt="Medium"></summary>
 
-## Key KPIs
+| | |
+|---|---|
+| 📌 **WHAT** | Electronics is ~60% of 2025 YTD revenue ($163M of $271.98M). Central region holds the #1 rank at every single time scope — 32.9% overall, consistent through 2025 YTD and August. |
+| 🎯 **WHY** | Consistent dominance across every scope confirms these aren't one-off spikes — they're structural revenue engines. But that same consistency means a demand shock, competitive pricing pressure, or return spike in either segment could move total company performance disproportionately. |
+| 🛠️ **ACTION** | Keep Electronics and Central as the primary growth engine, but build deliberate secondary-category (Home & Kitchen, Sports) and secondary-region growth plans so the business can expand without deepening single-segment concentration. |
+| ⚠️ **RISK** | Diversification investment could dilute focus and ROI from the highest-performing segment if pursued too aggressively — this needs balance, not abandonment of the core engine. |
 
-- Gross Profit
-- Net Revenue
-- Total Orders
-- Customers
-- Gross Margin %
-- Average Order Value (AOV)
+</details>
 
-## Key Insights
+<details>
+<summary><b>5️⃣ Operational Table Brand Rows Don't Reconcile to Displayed Totals</b> &nbsp; <img src="https://img.shields.io/badge/-HIGH-D9822B?style=flat-square" alt="High"></summary>
 
-- Central region contributes the highest order volume
-- Revenue distribution is balanced across major cities
-- Gross margin remains strong at ~31%
-- Revenue performance is stable across multiple categories
-- Top products contribute a major portion of total revenue
+| | |
+|---|---|
+| 📌 **WHAT** | On both the 2025 YTD and August operational matrix (p.5), the visible brand-level rows sum to more than the displayed total row. |
+| 🎯 **WHY** | This points to a hierarchy or semantic-model issue (likely double-counting in the brand dimension) rather than a display bug, and it undermines confidence in any brand-level contribution analysis pulled from this page. |
+| 🛠️ **ACTION** | Implement a row-to-total reconciliation check (brand rows must sum to category and grand totals) before publishing any brand-specific analysis from this table. |
+| ⚠️ **RISK** | Until reconciled, any business decision citing a specific brand's revenue or profit contribution from this page carries an unverified number. |
 
----
+</details>
 
-# 2️⃣ Sales Performance Dashboard
+<details>
+<summary><b>6️⃣ Growth Is Volume-Led, Not Price-Led — a Real Strategic Signal</b> &nbsp; <img src="https://img.shields.io/badge/-MEDIUM-E0B84C?style=flat-square" alt="Medium"></summary>
 
-Focused on revenue and operational performance tracking.
+| | |
+|---|---|
+| 📌 **WHAT** | Average discount holds at ~14.9% and ASP at ~$275 across all three time scopes. AOV holds at $745–$747 across all three scopes — remarkably stable. |
+| 🎯 **WHY** | Because price and discount levers are essentially flat, the entire revenue scale-up (from ~$12–13M/mo in 2023 to $32–35M/mo in 2025) is coming from order volume and customer activity — not from raising prices or deepening discounts. |
+| 🛠️ **ACTION** | Since AOV is a stable control variable, target purchase frequency and order count (repeat-purchase programs) rather than ticket-size expansion. Separately, test discount-band elasticity (10–12%, 12–15%, >15%) to find the profit-maximizing rate rather than assuming today's 14.9% is optimal. |
+| ⚠️ **RISK** | "Stable" isn't the same as "optimal" — without the elasticity test, the business could be leaving profit on the table in either direction. |
 
-## Analysis Included
-
-- Sales trend analysis
-- Payment type analysis
-- Promo code performance
-- Customer segment revenue
-- Monthly order trends
-- Revenue growth tracking
-
-## Key Insights
-
-- Non-prime customers generated higher total revenue
-- Wallet and card payments dominate transactions
-- Promo codes contributed significant incremental revenue
-- Sales showed seasonal fluctuations across months
-- Order volume increased during promotional periods
-
----
-
-# 3️⃣ Customer Insights Dashboard
-
-Focused on retention, LTV, churn, and customer growth.
-
-## Metrics Included
-
-- Average Customer Lifetime Value (LTV)
-- Repeat Customer %
-- Annual Churn Rate
-- Customer Growth %
-- New Customer Trend
-- Regional Customer Performance
-
-## Key Insights
-
-- Repeat customers contribute the majority of total revenue
-- Customer retention is a strong revenue driver
-- LTV growth indicates long-term customer value
-- Churn fluctuations reveal customer lifecycle drop-off periods
-- Central and East regions show stronger customer engagement
+</details>
 
 ---
 
-# 4️⃣ Product & Seller Performance Dashboard
+## 🏆 Recommendation Priority Matrix
 
-Focused on product profitability and seller efficiency.
-
-## Analysis Included
-
-- Top-selling products
-- Category profitability
-- Seller ranking
-- Discount impact simulation
-- Product revenue contribution
-- Gross margin analysis
-
-## Key Insights
-
-- Electronics generated the highest revenue
-- Some categories showed higher discount dependency
-- Top sellers significantly outperform average sellers
-- Discount optimization can improve margin efficiency
-- Seller ratings strongly correlate with sales performance
+| Priority | Workstream | Deliverable | Impact | Effort |
+|---|---|---|---|---|
+| 🥇 **P0** | Metric scope governance | Document which field-parameter metrics respect the date slicer vs. are intentionally overall | High | Low |
+| 🥇 **P0** | Metric dictionary | Formula + period + denominator definitions for every customer KPI | High | Low |
+| 🥈 **P1** | Profitability | Gross-profit bridge by category / region / discount band | High | Medium |
+| 🥈 **P1** | Customer retention | Cohort retention + repeat-purchase funnel | High | Medium |
+| 🥈 **P1** | Operations | Return + delivery heatmap by SKU / seller / region | Medium | Medium |
+| 🥉 **P2** | Pricing | Discount elasticity analysis to find the profit-maximizing band | Medium | Medium |
+| 🥉 **P2** | Product portfolio | Category diversification scorecard to reduce Electronics over-reliance | Medium | High |
 
 ---
 
-# ⚡ Advanced Power BI Features
+## 📈 Suggested Executive KPIs for the Next Dashboard Version
 
-## Implemented Features
-
-- Dynamic KPI Selection
-- Field Parameters
-- Drill-down Functionality
-- Drill-through Navigation
-- Interactive Slicers
-- Custom Page Navigation
-- Dynamic Titles
-- YoY & MoM Growth Analysis
-- Conditional Formatting
-- Tooltip Enhancements
-- Dynamic Row-Level Security (Dynamic RLS)
+| Domain | Primary KPI | Diagnostic KPI | Guardrail |
+|---|---|---|---|
+| Revenue | Net Revenue | Orders × AOV | Gross Margin |
+| Customers | Repeat Purchase Rate | Time to 2nd Order | Churn Rate L6M |
+| Product | Gross Profit | Units / Order | Return Rate |
+| Discount | Gross Profit After Discount | Incremental Units | Discount % |
+| Region | Net Revenue | AOV / Customer | Return & Delivery Rate |
+| Seller | Contribution Profit | Order Volume | Returns / Delivery Failures |
 
 ---
 
-# 💼 Business Impact
+## 🛠 Tech Stack
 
-This dashboard enables business teams to:
+| Tool | Purpose |
+|---|---|
+| Databricks (Spark SQL) | Large-scale processing & analytical querying |
+| Python (Pandas, NumPy) | Data cleaning & feature engineering |
+| Power BI + DAX | Dashboarding, field parameters, time intelligence |
+| Star Schema Modeling | Scalable analytics architecture |
 
-- Monitor business performance in real time
-- Query large datasets efficiently using Athena
-- Store scalable datasets securely in AWS S3
-- Identify high-value customers
-- Optimize pricing and discount strategies
-- Improve customer retention
-- Track seller efficiency
-- Analyze product profitability
-- Support data-driven business decisions
+```
+Raw Data → Python Cleaning → Databricks (Spark SQL) → Analytical Tables → Power BI Dashboard
+```
 
----
-
-# 🚀 Strategic Recommendations
-
-# 1️⃣ Improve Customer Retention
-
-Repeat customers contribute a significant portion of revenue.
-
-## Recommended Actions
-
-- Launch loyalty programs
-- Create personalized recommendations
-- Run email remarketing campaigns
-- Reduce time between first and second purchase
+**Analytical boundary:** This is a dashboard-level analysis — no raw transaction files were reviewed, so findings are stated as *associated with* or *requires further validation*, never as proven causality.
 
 ---
 
-# 2️⃣ Optimize Discount Strategy
+## 👨‍💻 Author
 
-Some categories rely heavily on discounts.
-
-## Recommended Actions
-
-- Introduce targeted promotions
-- Avoid excessive blanket discounts
-- Focus on margin-protected campaigns
-- Monitor category-wise discount efficiency
-
----
-
-# 3️⃣ Expand High-Performing Categories
-
-Electronics and beauty categories show strong revenue contribution.
-
-## Recommended Actions
-
-- Increase inventory availability
-- Improve seller onboarding
-- Run category-specific campaigns
-- Expand premium product offerings
-
----
-
-# 4️⃣ Improve Seller Quality Monitoring
-
-Top sellers outperform significantly.
-
-## Recommended Actions
-
-- Build seller performance scorecards
-- Monitor seller ratings and cancellations
-- Reward high-performing sellers
-- Reduce operational inefficiencies
-
----
-
-# 5️⃣ Strengthen Customer Lifecycle Analytics
-
-Churn patterns indicate lifecycle drop-off periods.
-
-## Recommended Actions
-
-- Trigger retention campaigns earlier
-- Monitor inactive customer windows
-- Build predictive churn models
-- Improve onboarding experience
-
----
-
-# 🔑 Key Skills Demonstrated
-
-- Business Intelligence
-- Data Modeling
-- SQL Analytics
-- Amazon Athena
-- AWS S3
-- Power BI Dashboarding
-- DAX Calculations
-- Customer Analytics
-- Product Analytics
-- Revenue Analysis
-- KPI Design
-- Data Cleaning
-- Data Storytelling
-- Dynamic Row-Level Security (RLS)
-- Cloud-Based Analytics Workflow
-
----
-
-# 📷 Dashboard Screenshots
-
-## Executive Summary
-
-![Executive Summary](images/executive_summary.png)
-
----
-
-## Sales Performance Dashboard
-
-![Sales Performance](images/sales_performance.png)
-
----
-
-## Customer Insights Dashboard
-
-![Customer Insights](images/customer_insights.png)
-
----
-
-## Product & Seller Performance Dashboard
-
-![Product & Seller Performance](images/product_seller_performance.png)
-
----
-
-## Product Drill-Through Page
-
-This drill-through page enables detailed product-level analysis including revenue contribution, seller performance, order trends, profitability, and customer purchasing behavior.
-
-![Product Drillthrough](images/product_drillthrough.png)
-
----
-
-## Measures Table & KPI Architecture
-
-This image shows the centralized measures table used for managing reusable DAX measures and KPI calculations across the dashboard.
-
-![Measures Table](images/measures_tables.png)
-
----
-
-## Data Model
-
-The project follows a professional Star Schema architecture optimized for scalable analytics and performance.
-
-![Data Model](images/data_model.png)
----
-
-# 👨‍💻 Author
-
-## Ankit Kumar  
-Aspiring Data Analyst | Power BI | SQL | Python | AWS | Business Analytics
+**Ankit Kumar**
+Data Analyst | Product Analytics | SQL | Power BI | Python | Databricks
 
 - GitHub: https://github.com/ankitkumargaya
 - LinkedIn: https://www.linkedin.com/in/ankit5517
 
 ---
 
-# 📌 Final Conclusion
+## 📌 Bottom Line
 
-This project demonstrates how raw e-commerce transactional data can be transformed into a scalable business intelligence solution capable of supporting executive-level decision making.
+> The business demonstrates strong commercial growth and a remarkably stable order-economics profile. The two things that matter next: protect gross margin as revenue scales, and make metric scope explicit so a slicer-driven number is never mistaken for a business trend. Fixing metric governance (P0, low effort) removes the single biggest risk of this dashboard being misread by an executive — and it's also the fastest win on the list.
 
-The dashboard combines:
-
-- Data Engineering Concepts
-- Cloud-Based Analytics
-- Business Intelligence
-- Customer Analytics
-- Product Analytics
-- Advanced Power BI Development
-- SQL & Athena Querying
-- Real-World KPI Tracking
-
-This project reflects practical analytics skills used in modern product-based and e-commerce organizations.
+### Revenue-Led Growth → Margin-Protected, Governance-Backed Growth
