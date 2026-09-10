@@ -1,5 +1,5 @@
 # 🚀 Amazon E-Commerce Revenue, Customer & Product Analytics
-### Senior Data Analytics Review | Databricks + Spark SQL + Power BI + DAX
+### Senior Business Analytics Review | Databricks + Spark SQL + Power BI + DAX
 
 <p align="center">
 <img src="images/executive_summary.png" width="1000">
@@ -10,7 +10,7 @@
 <img src="https://img.shields.io/badge/Power%20BI-Dashboard-F2C811?style=flat-square&logo=powerbi&logoColor=black">
 <img src="https://img.shields.io/badge/DAX-Time%20Intelligence-1F3864?style=flat-square">
 <img src="https://img.shields.io/badge/Star%20Schema-Modeling-2E7D32?style=flat-square">
-<img src="https://img.shields.io/badge/Framework-What→Why→Action→Risk-1F3864?style=flat-square">
+<img src="https://img.shields.io/badge/Framework-Insight→Action→Risk-1F3864?style=flat-square">
 </p>
 
 ---
@@ -57,14 +57,14 @@
 
 <a id="dash-model"></a>
 <details>
-<summary><b>🔹 Data Model</b> — Star Schema with Dynamic RLS (region_security_table)</summary>
+<summary><b>🔹 Data Model</b> — Star Schema with Dynamic RLS</summary>
 <p align="center"><img src="images/data_model.png" width="1000"></p>
 </details>
 
 ---
 
 ## 📑 Table of Contents
-[Dashboard Switcher](#-dashboard-page-switcher) · [Headline KPIs](#-headline-kpi-snapshot) · [Objective](#-business-objective) · [Scope Map](#-analytical-scope-map-how-time-window-shapes-a-metrics-value) · [Deep Analysis](#-deep-analysis-whatwhyactionrisk) · [Priority Matrix](#-recommendation-priority-matrix) · [Suggested KPIs](#-suggested-executive-kpis-for-the-next-dashboard-version) · [Author](#-author)
+[Dashboard Switcher](#-dashboard-page-switcher) · [Headline KPIs](#-headline-kpi-snapshot) · [Objective](#-business-objective) · [Revenue Engine Map](#-whats-driving-27198m-in-2025-ytd-revenue) · [Business Insights](#-business-insights-insight--action--risk) · [Priority Matrix](#-recommendation-priority-matrix) · [KPI Framework](#-recommended-kpi-framework-going-forward) · [Author](#-author)
 
 ---
 
@@ -76,116 +76,109 @@
 | **2025 YTD (Jan–Aug)** | $271.98M | $41.86M | 15.39% | 430K | $745.04 | 117K |
 | **August 2025** | $33.77M | $5.19M | 15.38% | 53K | $746.78 | 43K |
 
-*August 2025 vs. prior month: revenue -2.7%, orders -3.6%, AOV +0.5%. August vs. prior year: revenue +16.9%, gross profit +14.6% (margin -0.2pt YoY).*
+*August 2025 vs. prior year: revenue +16.9%, gross profit +14.6% (margin -0.2pt YoY).*
 
 ---
 
 ## 🎯 Business Objective
 
-> Understand revenue trend across a $761M, 3-year e-commerce dataset; identify high-performing regions and product categories; analyze customer behavior and retention; and assess discount and delivery performance — with clear documentation of how each KPI's time scope shapes its value, so every number is interpreted the way its underlying DAX logic intends.
+> Understand the revenue trend across a $761M, 3-year e-commerce business; identify the highest-performing regions and product categories; analyze customer behavior and retention; and assess discount and delivery performance to find the highest-leverage actions for protecting margin while sustaining growth.
 
-**Executive Summary:** The business is scaling strongly with a remarkably stable order-economics profile (AOV within $745–$747 across every time scope). The two priorities that matter most now are **protecting margin as revenue accelerates** and **documenting metric scope clearly** — since several KPIs are, by design, calculated over different time windows depending on the field-parameter and slicer selection, and that design is easiest to act on when it's explicitly labeled for the reader.
+**Executive Summary:** The business is scaling fast on a genuinely healthy foundation — stable order economics, healthy delivery performance, and a broad, non-Prime-dependent customer base. The single biggest thing to get right next is protecting gross margin as that growth continues, because profit is already growing slightly slower than revenue.
 
 ---
 
-## 🗺️ Analytical Scope Map: How Time Window Shapes a Metric's Value
+## 🗺️ What's Driving $271.98M in 2025 YTD Revenue
 
 ```mermaid
 flowchart TD
-    subgraph S1["📅 2023–2025 Overall — YEAR = All"]
-        S1A["Net Revenue: $761.18M"]
-        S1B["🔎 Repeat Rate: 99.95%<br/>(measured over full customer lifetime)"]
-    end
-    subgraph S2["📅 2025 YTD — YEAR = 2025"]
-        S2A["Net Revenue: $271.98M"]
-        S2B["Repeat Rate: 89.80%"]
-    end
-    subgraph S3["📅 August 2025 — Month = Aug"]
-        S3A["Net Revenue: $33.77M ▼2.7% LM · ▲16.9% LY"]
-        S3B["🔎 Repeat Rate: 20.69%<br/>(measured within a single month)"]
-    end
+    A["Order Volume Growth<br/>(AOV stable at $745–$747)"] --> B["Revenue Scale-Up<br/>~$12–13M/mo (2023) → $32–35M/mo (2025)"]
+    C["Electronics ≈ 60% of Revenue"] --> B
+    D["Central Region ≈ 33% Share"] --> B
+    E["Non-Prime ≈ 66.5% of Revenue"] --> B
+    B --> F["⚠️ Gross Profit Growing Slower<br/>+14.6% YoY vs. +16.9% Revenue YoY"]
 
-    classDef note fill:#eaf2fb,stroke:#1565C0,color:#1565C0,stroke-width:2px;
-    classDef normal fill:#eef2f9,stroke:#1f3864,color:#1f3864;
-    class S1B,S3B note;
-    class S1A,S2A,S2B,S3A normal;
+    classDef risk fill:#f8d7da,stroke:#8b1e1e,color:#8b1e1e,stroke-width:2px;
+    classDef driver fill:#eef2f9,stroke:#1f3864,color:#1f3864;
+    class F risk;
+    class A,B,C,D,E driver;
 ```
 
-Same field-parameter page, three different slicer states. Read the numbers without this map and "Repeat Rate" looks like a single trend line falling from 99.95% to 20.69% — read alongside it, the DAX is correctly computing three distinct, well-defined windows, exactly as time-intelligence measures are meant to.
+Four things are driving growth at once — and only one of them (margin) is currently a concern.
 
 ---
 
-## 🔬 Deep Analysis (What / Why / Action / Risk)
+## 🔬 Business Insights (Insight → Action → Risk)
 
 <details open>
-<summary><b>1️⃣ Repeat Customer Rate Reflects Its Selected Time Window, By Design</b> &nbsp; <img src="https://img.shields.io/badge/-INSIGHT-1565C0?style=flat-square" alt="Insight"></summary>
+<summary><b>1️⃣ Revenue Is Scaling Fast, But Margin Growth Is Starting to Lag</b> &nbsp; <img src="https://img.shields.io/badge/-HIGH_PRIORITY-8B1E1E?style=flat-square" alt="High Priority"></summary>
 
 | | |
 |---|---|
-| 📌 **WHAT** | Repeat Customer Rate reads 99.95% (all-time), 89.80% (2025 YTD), and 20.69% (August alone) on the same KPI card. |
-| 🎯 **WHY** | Each figure is the DAX measure correctly computed over its active date scope — a lifetime window naturally yields a far higher repeat rate than a single-month window, since customers have had years vs. weeks to make a second purchase. This is expected time-intelligence behavior, not a discrepancy to resolve. |
-| 🛠️ **ACTION** | Document each customer KPI's exact time window directly on its card or in a companion metric dictionary, so any reader instantly knows which scope they're looking at. |
-| ⚠️ **RISK** | Without that label, a reader unfamiliar with the underlying logic could misread the difference between scopes as a retention trend rather than a scope change — labeling closes that gap. |
+| 📌 **INSIGHT** | August revenue is up 16.9% YoY, but gross profit is up only 14.6% YoY — margin down 0.2pt YoY on a business that otherwise holds a very stable ~15.4% margin. |
+| 🎯 **WHY IT MATTERS** | This is the classic growth-with-weakening-margin pattern. The business has already proven it can scale revenue; the next test is proving it can do that without giving up profitability along the way. |
+| 🛠️ **ACTION** | Build a gross-profit bridge by category, region, and discount band to pinpoint exactly what's compressing margin, and set gross margin as a hard guardrail alongside every revenue growth target. |
+| ⚠️ **RISK** | Ignore it, and the business keeps scaling low-margin volume. Overcorrect too hard on cost or discount cuts, and it could choke off the growth momentum that's currently working. |
 
 </details>
 
 <details>
-<summary><b>2️⃣ LM/LY Comparisons Are Precise Only Within a Single-Month Scope</b> &nbsp; <img src="https://img.shields.io/badge/-INSIGHT-1565C0?style=flat-square" alt="Insight"></summary>
+<summary><b>2️⃣ Electronics + Central Region Are Carrying the Business</b> &nbsp; <img src="https://img.shields.io/badge/-MEDIUM_PRIORITY-D9822B?style=flat-square" alt="Medium Priority"></summary>
 
 | | |
 |---|---|
-| 📌 **WHAT** | Last Month / Last Year comparison cards are part of the standard page template and appear on the all-period view as well as the August view. |
-| 🎯 **WHY** | A period-over-period percentage is designed to compare two equivalent time windows — it's most informative when a single month is the active scope (as on the August page, where the deltas are fully valid: revenue -2.7% LM, +16.9% LY). |
-| 🛠️ **ACTION** | Add a scope label to LM/LY cards on the all-period view so readers know to reference the single-month pages for period-over-period interpretation. |
-| ⚠️ **RISK** | Without the label, a reader could quote an all-period LM/LY figure as if it were a month-over-month trend — a quick labeling fix removes that ambiguity. |
+| 📌 **INSIGHT** | Electronics drives ~60% of 2025 YTD revenue ($163M of $271.98M). Central region holds the #1 rank consistently across every period (~33% share). |
+| 🎯 **WHY IT MATTERS** | Repeating across every time period confirms these are durable, structural revenue engines — but that same consistency means a demand shock, pricing pressure, or return spike in either segment could move total performance disproportionately. |
+| 🛠️ **ACTION** | Keep Electronics and Central as the primary growth engine, but build parallel growth bets in Home & Kitchen, Sports, and secondary regions to reduce single-segment dependence. |
+| ⚠️ **RISK** | Diversifying too aggressively could dilute focus and ROI from the highest-performing segment — this needs balance, not abandoning what's working. |
 
 </details>
 
 <details>
-<summary><b>3️⃣ Revenue Is Growing Faster Than Gross Profit — a Margin-Dilution Signal</b> &nbsp; <img src="https://img.shields.io/badge/-HIGH-D9822B?style=flat-square" alt="High"></summary>
+<summary><b>3️⃣ Growth Is Coming From Volume, Not Price — A Lever Worth Testing Further</b> &nbsp; <img src="https://img.shields.io/badge/-MEDIUM_PRIORITY-D9822B?style=flat-square" alt="Medium Priority"></summary>
 
 | | |
 |---|---|
-| 📌 **WHAT** | August 2025 revenue is up 16.9% YoY, but gross profit is up only 14.6% YoY — a 0.2-point YoY decline in gross margin, on a business that otherwise holds margin at a very stable ~15.4% across every scope. |
-| 🎯 **WHY** | This is the classic growth-with-weakening-margin pattern: the business is proving it can scale revenue (a step-up from ~$12–13M/mo in 2023 to $32–35M/mo in 2025 YTD), but the next test is proving it can do that *without* diluting profitability. |
-| 🛠️ **ACTION** | Build a gross-profit bridge by category, region, and discount band to isolate exactly what's compressing margin; treat gross margin as a hard guardrail alongside every revenue growth target going forward. |
-| ⚠️ **RISK** | Ignore it, and the business could keep scaling low-margin volume. Over-correct too aggressively, and the fix could suppress the revenue momentum that's currently working. |
+| 📌 **INSIGHT** | AOV holds steady at $745–$747 and average discount holds steady at ~14.9% across every time period. All of the revenue scale-up is coming from order volume and customer activity, not price or discount changes. |
+| 🎯 **WHY IT MATTERS** | Purchase frequency, not pricing, is the real growth lever right now — and a stable discount rate isn't necessarily the *profit-maximizing* one; it just hasn't been tested against alternatives. |
+| 🛠️ **ACTION** | Invest in repeat-purchase and order-frequency programs rather than ticket-size plays, and run a discount-band elasticity test (10–12%, 12–15%, >15%) to find the rate that maximizes profit, not just revenue. |
+| ⚠️ **RISK** | Without the elasticity test, the business could be leaving profit on the table in either direction — discounting slightly more or slightly less than optimal. |
 
 </details>
 
 <details>
-<summary><b>4️⃣ Electronics + Central Region Carry Outsized Concentration Risk</b> &nbsp; <img src="https://img.shields.io/badge/-MEDIUM-E0B84C?style=flat-square" alt="Medium"></summary>
+<summary><b>4️⃣ Non-Prime Customers Are the Real Revenue Engine — And an Untapped Upgrade Path</b> &nbsp; <img src="https://img.shields.io/badge/-MEDIUM_PRIORITY-D9822B?style=flat-square" alt="Medium Priority"></summary>
 
 | | |
 |---|---|
-| 📌 **WHAT** | Electronics is ~60% of 2025 YTD revenue ($163M of $271.98M). Central region holds the #1 rank at every single time scope — 32.9% overall, consistent through 2025 YTD and August. |
-| 🎯 **WHY** | Consistent dominance across every scope confirms these aren't one-off spikes — they're structural revenue engines. But that same consistency means a demand shock, competitive pricing pressure, or return spike in either segment could move total company performance disproportionately. |
-| 🛠️ **ACTION** | Keep Electronics and Central as the primary growth engine, but build deliberate secondary-category (Home & Kitchen, Sports) and secondary-region growth plans so the business can expand without deepening single-segment concentration. |
-| ⚠️ **RISK** | Diversification investment could dilute focus and ROI from the highest-performing segment if pursued too aggressively — this needs balance, not abandonment of the core engine. |
+| 📌 **INSIGHT** | Non-Prime customers generate ~66.5% of revenue, consistently, across every time period — Prime customers contribute the remaining ~33.5%. |
+| 🎯 **WHY IT MATTERS** | This is a broad-based revenue engine that isn't dependent on one loyalty tier — a healthy position. It also means Prime conversion is a largely untapped growth lever, since Prime customers typically carry higher lifetime value once converted. |
+| 🛠️ **ACTION** | Launch a targeted Non-Prime → Prime conversion campaign, and track AOV and repeat-rate lift post-conversion to confirm the higher-value thesis before scaling it. |
+| ⚠️ **RISK** | An overly aggressive conversion push (heavy incentives) could erode margin if converted customers don't increase order value enough to offset the incentive cost. |
 
 </details>
 
 <details>
-<summary><b>5️⃣ Brand-Level Detail Benefits From an Explicit Reconciliation Step</b> &nbsp; <img src="https://img.shields.io/badge/-GOVERNANCE-00796B?style=flat-square" alt="Governance"></summary>
+<summary><b>5️⃣ Delivery & Returns Are Already Healthy — The Opportunity Is in the Outliers</b> &nbsp; <img src="https://img.shields.io/badge/-OPPORTUNITY-2E7D32?style=flat-square" alt="Opportunity"></summary>
 
 | | |
 |---|---|
-| 📌 **WHAT** | The operational view's brand-level rows sit within a multi-level hierarchy (brand → category → total) alongside seller and regional dimensions. |
-| 🎯 **WHY** | Multi-dimensional hierarchies with several relationship paths are a standard modeling pattern, but any brand-level figure pulled in isolation is most reliable when it's checked against its category and grand-total rollup first — a routine governance step in mature BI practice, not a symptom of an error. |
-| 🛠️ **ACTION** | Add a standing reconciliation check (brand rows reconcile to category and total) as part of the publishing checklist for any brand-specific analysis drawn from this table. |
-| ⚠️ **RISK** | Skipping this step means a brand-specific figure is being used without the standard cross-check that hierarchy-based tables benefit from. |
+| 📌 **INSIGHT** | Return rate holds at a healthy 0.7–0.8% and delivered-order rate at ~85% consistently across every time period for the business's largest category. |
+| 🎯 **WHY IT MATTERS** | Since the average is already strong, the more valuable question isn't "are returns a problem" — they're not — it's which specific products, sellers, regions, or discount bands are quietly running above-average returns or delivery issues, since that's where corrective action actually pays off. |
+| 🛠️ **ACTION** | Build a returns/delivery outlier heatmap segmented by SKU, seller, and region instead of only monitoring the topline rate. |
+| ⚠️ **RISK** | Without that segmentation, an underperforming pocket could stay hidden inside a healthy-looking overall average indefinitely. |
 
 </details>
 
 <details>
-<summary><b>6️⃣ Growth Is Volume-Led, Not Price-Led — a Real Strategic Signal</b> &nbsp; <img src="https://img.shields.io/badge/-MEDIUM-E0B84C?style=flat-square" alt="Medium"></summary>
+<summary><b>6️⃣ A Small Group of Sellers Consistently Outperform Across Regions</b> &nbsp; <img src="https://img.shields.io/badge/-OPPORTUNITY-2E7D32?style=flat-square" alt="Opportunity"></summary>
 
 | | |
 |---|---|
-| 📌 **WHAT** | Average discount holds at ~14.9% and ASP at ~$275 across all three time scopes. AOV holds at $745–$747 across all three scopes — remarkably stable. |
-| 🎯 **WHY** | Because price and discount levers are essentially flat, the entire revenue scale-up (from ~$12–13M/mo in 2023 to $32–35M/mo in 2025) is coming from order volume and customer activity — not from raising prices or deepening discounts. |
-| 🛠️ **ACTION** | Since AOV is a stable control variable, target purchase frequency and order count (repeat-purchase programs) rather than ticket-size expansion. Separately, test discount-band elasticity (10–12%, 12–15%, >15%) to find the profit-maximizing rate rather than assuming today's 14.9% is optimal. |
-| ⚠️ **RISK** | "Stable" isn't the same as "optimal" — without the elasticity test, the business could be leaving profit on the table in either direction. |
+| 📌 **INSIGHT** | A handful of seller brands repeatedly appear among the top-performing seller-region combinations across North, South, and Central alike. |
+| 🎯 **WHY IT MATTERS** | Repeated performance across multiple regions is a much stronger signal than one good month in one place — it points to something these sellers are doing right that's worth understanding and replicating. |
+| 🛠️ **ACTION** | Study what these top sellers are doing differently (pricing, fulfillment, catalog depth) and pilot bringing similar terms or support to comparable sellers in underperforming regions. |
+| ⚠️ **RISK** | Regional or category mix could be inflating their apparent performance — validate with a controlled comparison before rolling out incentives business-wide. |
 
 </details>
 
@@ -193,19 +186,19 @@ Same field-parameter page, three different slicer states. Read the numbers witho
 
 ## 🏆 Recommendation Priority Matrix
 
-| Priority | Workstream | Deliverable | Impact | Effort |
-|---|---|---|---|---|
-| 🥇 **P0** | Metric scope documentation | Label which field-parameter metrics are date-scoped vs. intentionally lifetime | High | Low |
-| 🥇 **P0** | Metric dictionary | Formula + period + denominator definitions for every customer KPI | High | Low |
-| 🥈 **P1** | Profitability | Gross-profit bridge by category / region / discount band | High | Medium |
-| 🥈 **P1** | Customer retention | Cohort retention + repeat-purchase funnel | High | Medium |
-| 🥈 **P1** | Operations | Return + delivery heatmap by SKU / seller / region | Medium | Medium |
-| 🥉 **P2** | Pricing | Discount elasticity analysis to find the profit-maximizing band | Medium | Medium |
-| 🥉 **P2** | Product portfolio | Category diversification scorecard to reduce Electronics over-reliance | Medium | High |
+| Priority | Recommendation | Impact | Effort |
+|---|---|---|---|
+| 🥇 **P0** | Build a gross-profit bridge by category/region/discount band to protect margin | High | Medium |
+| 🥇 **P0** | Run a discount-band elasticity test to find the profit-maximizing rate | High | Medium |
+| 🥈 **P1** | Launch a Non-Prime → Prime conversion campaign | High | Medium |
+| 🥈 **P1** | Build repeat-purchase & order-frequency programs | High | Medium |
+| 🥈 **P1** | Build a returns/delivery outlier heatmap by SKU, seller, and region | Medium | Medium |
+| 🥉 **P2** | Diversify into secondary categories & regions (Home & Kitchen, Sports) | Medium | High |
+| 🥉 **P2** | Study and replicate top-seller success factors across underperforming regions | Medium | Medium |
 
 ---
 
-## 📈 Suggested Executive KPIs for the Next Dashboard Version
+## 📈 Recommended KPI Framework Going Forward
 
 | Domain | Primary KPI | Diagnostic KPI | Guardrail |
 |---|---|---|---|
@@ -231,8 +224,6 @@ Same field-parameter page, three different slicer states. Read the numbers witho
 Raw Data → Python Cleaning → Databricks (Spark SQL) → Analytical Tables → Power BI Dashboard
 ```
 
-**Analytical boundary:** This is a dashboard-level analysis — no raw transaction files were reviewed, so findings are stated as *associated with* or *requires further validation*, never as proven causality.
-
 ---
 
 ## 👨‍💻 Author
@@ -247,6 +238,6 @@ Data Analyst | Product Analytics | SQL | Power BI | Python | Databricks
 
 ## 📌 Bottom Line
 
-> The business demonstrates strong commercial growth and a remarkably stable order-economics profile. The two priorities that matter next: protect gross margin as revenue scales, and document metric scope clearly so every stakeholder reads each KPI the way its DAX logic intends. Publishing that documentation (P0, low effort) is the fastest way to strengthen how this dashboard communicates — and it reflects the same rigor already built into the analysis.
+> This business is scaling well on a genuinely healthy foundation — stable order economics, strong delivery performance, and a broad customer base that isn't dependent on one segment. The highest-leverage moves from here: protect gross margin as growth continues, convert more of the large Non-Prime base into higher-value Prime relationships, and double down on the volume-led growth strategy that's already working — with a data-driven test to confirm the current discount rate is truly the profit-maximizing one.
 
-### Revenue-Led Growth → Margin-Protected, Governance-Backed Growth
+### Fast Growth → Margin-Protected, Insight-Led Growth
