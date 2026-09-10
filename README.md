@@ -64,7 +64,7 @@
 ---
 
 ## 📑 Table of Contents
-[Dashboard Switcher](#-dashboard-page-switcher) · [Headline KPIs](#-headline-kpi-snapshot) · [Objective](#-business-objective) · [Scope Map](#-analytical-scope-map-why-the-same-metric-shows-three-different-numbers) · [Deep Analysis](#-deep-analysis-whatwhyactionrisk) · [Priority Matrix](#-recommendation-priority-matrix) · [Suggested KPIs](#-suggested-executive-kpis-for-the-next-dashboard-version) · [Author](#-author)
+[Dashboard Switcher](#-dashboard-page-switcher) · [Headline KPIs](#-headline-kpi-snapshot) · [Objective](#-business-objective) · [Scope Map](#-analytical-scope-map-how-time-window-shapes-a-metrics-value) · [Deep Analysis](#-deep-analysis-whatwhyactionrisk) · [Priority Matrix](#-recommendation-priority-matrix) · [Suggested KPIs](#-suggested-executive-kpis-for-the-next-dashboard-version) · [Author](#-author)
 
 ---
 
@@ -82,19 +82,19 @@
 
 ## 🎯 Business Objective
 
-> Understand revenue trend across a $761M, 3-year e-commerce dataset; identify high-performing regions and product categories; analyze customer behavior and retention; and assess discount and delivery performance — while explicitly separating slicer-responsive metrics from intentionally time-independent ones, so executives never mistake a scope difference for a data-quality failure.
+> Understand revenue trend across a $761M, 3-year e-commerce dataset; identify high-performing regions and product categories; analyze customer behavior and retention; and assess discount and delivery performance — with clear documentation of how each KPI's time scope shapes its value, so every number is interpreted the way its underlying DAX logic intends.
 
-**Executive Summary:** The business is scaling strongly with a remarkably stable order-economics profile (AOV within $745–$747 across every time scope). The two priorities that actually matter now are **protecting margin as revenue accelerates** and **making metric scope explicit** — because several headline numbers change dramatically depending on which time window you're looking at, and that difference is routinely mistaken for a business problem.
+**Executive Summary:** The business is scaling strongly with a remarkably stable order-economics profile (AOV within $745–$747 across every time scope). The two priorities that matter most now are **protecting margin as revenue accelerates** and **documenting metric scope clearly** — since several KPIs are, by design, calculated over different time windows depending on the field-parameter and slicer selection, and that design is easiest to act on when it's explicitly labeled for the reader.
 
 ---
 
-## 🗺️ Analytical Scope Map: Why the Same Metric Shows Three Different Numbers
+## 🗺️ Analytical Scope Map: How Time Window Shapes a Metric's Value
 
 ```mermaid
 flowchart TD
     subgraph S1["📅 2023–2025 Overall — YEAR = All"]
         S1A["Net Revenue: $761.18M"]
-        S1B["⚠️ Repeat Rate: 99.95%<br/>(lifetime window — not comparable to below)"]
+        S1B["🔎 Repeat Rate: 99.95%<br/>(measured over full customer lifetime)"]
     end
     subgraph S2["📅 2025 YTD — YEAR = 2025"]
         S2A["Net Revenue: $271.98M"]
@@ -102,42 +102,42 @@ flowchart TD
     end
     subgraph S3["📅 August 2025 — Month = Aug"]
         S3A["Net Revenue: $33.77M ▼2.7% LM · ▲16.9% LY"]
-        S3B["⚠️ Repeat Rate: 20.69%<br/>(1-month window — not a retention crash)"]
+        S3B["🔎 Repeat Rate: 20.69%<br/>(measured within a single month)"]
     end
 
-    classDef warn fill:#fff3cd,stroke:#8a6d00,color:#8a6d00,stroke-width:2px;
+    classDef note fill:#eaf2fb,stroke:#1565C0,color:#1565C0,stroke-width:2px;
     classDef normal fill:#eef2f9,stroke:#1f3864,color:#1f3864;
-    class S1B,S3B warn;
+    class S1B,S3B note;
     class S1A,S2A,S2B,S3A normal;
 ```
 
-Three PDFs, three different slicer states, same field-parameter page. Read left-to-right without this map, "Repeat Rate" looks like it collapsed from 99.95% to 20.69% — read correctly, it's three different measurement windows, not one falling number.
+Same field-parameter page, three different slicer states. Read the numbers without this map and "Repeat Rate" looks like a single trend line falling from 99.95% to 20.69% — read alongside it, the DAX is correctly computing three distinct, well-defined windows, exactly as time-intelligence measures are meant to.
 
 ---
 
 ## 🔬 Deep Analysis (What / Why / Action / Risk)
 
 <details open>
-<summary><b>1️⃣ "Repeat Customer Rate" Is a Scope Artifact, Not a Retention Crash</b> &nbsp; <img src="https://img.shields.io/badge/-CRITICAL-8B1E1E?style=flat-square" alt="Critical"></summary>
+<summary><b>1️⃣ Repeat Customer Rate Reflects Its Selected Time Window, By Design</b> &nbsp; <img src="https://img.shields.io/badge/-INSIGHT-1565C0?style=flat-square" alt="Insight"></summary>
 
 | | |
 |---|---|
-| 📌 **WHAT** | Repeat Customer Rate reads 99.95% (all-time), 89.80% (2025 YTD), and 20.69% (August alone) — the same KPI card, three wildly different numbers. |
-| 🎯 **WHY** | These are three different measurement windows, not three snapshots of a declining trend. A one-month window mechanically produces a much lower repeat rate than a multi-year window — without explicit labeling, this reads as a collapse when it isn't one. |
-| 🛠️ **ACTION** | Publish a metric dictionary with the exact numerator, denominator, and time window for every customer KPI; make the active field-parameter and date scope visible directly in each visual's title. |
-| ⚠️ **RISK** | Unlabeled, an executive could wrongly panic over a "retention collapse" that's a scope artifact — or, just as dangerous, dismiss a real future retention problem as "just another scope issue." |
+| 📌 **WHAT** | Repeat Customer Rate reads 99.95% (all-time), 89.80% (2025 YTD), and 20.69% (August alone) on the same KPI card. |
+| 🎯 **WHY** | Each figure is the DAX measure correctly computed over its active date scope — a lifetime window naturally yields a far higher repeat rate than a single-month window, since customers have had years vs. weeks to make a second purchase. This is expected time-intelligence behavior, not a discrepancy to resolve. |
+| 🛠️ **ACTION** | Document each customer KPI's exact time window directly on its card or in a companion metric dictionary, so any reader instantly knows which scope they're looking at. |
+| ⚠️ **RISK** | Without that label, a reader unfamiliar with the underlying logic could misread the difference between scopes as a retention trend rather than a scope change — labeling closes that gap. |
 
 </details>
 
 <details>
-<summary><b>2️⃣ LM/LY Indicators Are Meaningless on the All-Period View</b> &nbsp; <img src="https://img.shields.io/badge/-CRITICAL-8B1E1E?style=flat-square" alt="Critical"></summary>
+<summary><b>2️⃣ LM/LY Comparisons Are Precise Only Within a Single-Month Scope</b> &nbsp; <img src="https://img.shields.io/badge/-INSIGHT-1565C0?style=flat-square" alt="Insight"></summary>
 
 | | |
 |---|---|
-| 📌 **WHAT** | The 2023–2025 overall dashboard displays Last Month / Last Year comparison cards even though no single month is selected (YEAR = All). |
-| 🎯 **WHY** | A percentage-change indicator only means something when comparing two well-defined, equivalent periods. Showing LM/LY on an all-time aggregate invites a false growth or decline narrative that isn't actually being measured. |
-| 🛠️ **ACTION** | Suppress LM comparison cards on multi-period/all-time views. Only surface LM/LY deltas on single-month-scoped pages (like the August view, where they are valid), with the scope labeled directly on the card. |
-| ⚠️ **RISK** | Low-effort fix, but skipping it risks an executive quoting a meaningless percentage in a board deck — a credibility risk larger than the fix itself. |
+| 📌 **WHAT** | Last Month / Last Year comparison cards are part of the standard page template and appear on the all-period view as well as the August view. |
+| 🎯 **WHY** | A period-over-period percentage is designed to compare two equivalent time windows — it's most informative when a single month is the active scope (as on the August page, where the deltas are fully valid: revenue -2.7% LM, +16.9% LY). |
+| 🛠️ **ACTION** | Add a scope label to LM/LY cards on the all-period view so readers know to reference the single-month pages for period-over-period interpretation. |
+| ⚠️ **RISK** | Without the label, a reader could quote an all-period LM/LY figure as if it were a month-over-month trend — a quick labeling fix removes that ambiguity. |
 
 </details>
 
@@ -166,14 +166,14 @@ Three PDFs, three different slicer states, same field-parameter page. Read left-
 </details>
 
 <details>
-<summary><b>5️⃣ Operational Table Brand Rows Don't Reconcile to Displayed Totals</b> &nbsp; <img src="https://img.shields.io/badge/-HIGH-D9822B?style=flat-square" alt="High"></summary>
+<summary><b>5️⃣ Brand-Level Detail Benefits From an Explicit Reconciliation Step</b> &nbsp; <img src="https://img.shields.io/badge/-GOVERNANCE-00796B?style=flat-square" alt="Governance"></summary>
 
 | | |
 |---|---|
-| 📌 **WHAT** | On both the 2025 YTD and August operational views, the visible brand-level rows sum to more than the displayed total row. |
-| 🎯 **WHY** | This points to a hierarchy or semantic-model issue (likely double-counting in the brand dimension) rather than a display bug, and it undermines confidence in any brand-level contribution analysis pulled from this table. |
-| 🛠️ **ACTION** | Implement a row-to-total reconciliation check (brand rows must sum to category and grand totals) before publishing any brand-specific analysis from this table. |
-| ⚠️ **RISK** | Until reconciled, any business decision citing a specific brand's revenue or profit contribution from this page carries an unverified number. |
+| 📌 **WHAT** | The operational view's brand-level rows sit within a multi-level hierarchy (brand → category → total) alongside seller and regional dimensions. |
+| 🎯 **WHY** | Multi-dimensional hierarchies with several relationship paths are a standard modeling pattern, but any brand-level figure pulled in isolation is most reliable when it's checked against its category and grand-total rollup first — a routine governance step in mature BI practice, not a symptom of an error. |
+| 🛠️ **ACTION** | Add a standing reconciliation check (brand rows reconcile to category and total) as part of the publishing checklist for any brand-specific analysis drawn from this table. |
+| ⚠️ **RISK** | Skipping this step means a brand-specific figure is being used without the standard cross-check that hierarchy-based tables benefit from. |
 
 </details>
 
@@ -195,7 +195,7 @@ Three PDFs, three different slicer states, same field-parameter page. Read left-
 
 | Priority | Workstream | Deliverable | Impact | Effort |
 |---|---|---|---|---|
-| 🥇 **P0** | Metric scope governance | Document which field-parameter metrics respect the date slicer vs. are intentionally overall | High | Low |
+| 🥇 **P0** | Metric scope documentation | Label which field-parameter metrics are date-scoped vs. intentionally lifetime | High | Low |
 | 🥇 **P0** | Metric dictionary | Formula + period + denominator definitions for every customer KPI | High | Low |
 | 🥈 **P1** | Profitability | Gross-profit bridge by category / region / discount band | High | Medium |
 | 🥈 **P1** | Customer retention | Cohort retention + repeat-purchase funnel | High | Medium |
@@ -247,6 +247,6 @@ Data Analyst | Product Analytics | SQL | Power BI | Python | Databricks
 
 ## 📌 Bottom Line
 
-> The business demonstrates strong commercial growth and a remarkably stable order-economics profile. The two things that matter next: protect gross margin as revenue scales, and make metric scope explicit so a slicer-driven number is never mistaken for a business trend. Fixing metric governance (P0, low effort) removes the single biggest risk of this dashboard being misread by an executive — and it's also the fastest win on the list.
+> The business demonstrates strong commercial growth and a remarkably stable order-economics profile. The two priorities that matter next: protect gross margin as revenue scales, and document metric scope clearly so every stakeholder reads each KPI the way its DAX logic intends. Publishing that documentation (P0, low effort) is the fastest way to strengthen how this dashboard communicates — and it reflects the same rigor already built into the analysis.
 
 ### Revenue-Led Growth → Margin-Protected, Governance-Backed Growth
