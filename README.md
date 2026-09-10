@@ -5,8 +5,6 @@
 <img src="images/executive_summary.png" width="1000">
 </p>
 
-> ⚠️ **Maintenance note:** The screenshots below are from the project's prior dataset version. This README's numbers reflect the current, larger dataset ($761.18M revenue / 120K customers / Databricks pipeline). Replace `executive_summary.png`, `sales_performance.png`, `customer_insights.png`, `product_seller_performance.png`, and add `operational_matrix.png` with current exports before publishing.
-
 <p align="center">
 <img src="https://img.shields.io/badge/Databricks-Spark%20SQL-FF3621?style=flat-square&logo=databricks&logoColor=white">
 <img src="https://img.shields.io/badge/Power%20BI-Dashboard-F2C811?style=flat-square&logo=powerbi&logoColor=black">
@@ -26,7 +24,7 @@
 <a href="#dash-customer"><img src="https://img.shields.io/badge/🧑‍🤝‍🧑_CUSTOMER_INSIGHTS-2E7D32?style=for-the-badge"></a>
 <br>
 <a href="#dash-product"><img src="https://img.shields.io/badge/🛍️_PRODUCT_%26_SELLER-6A0DAD?style=for-the-badge"></a>
-<a href="#dash-ops"><img src="https://img.shields.io/badge/🚚_OPERATIONAL_MATRIX-00796B?style=for-the-badge"></a>
+<a href="#dash-model"><img src="https://img.shields.io/badge/🧬_DATA_MODEL-00796B?style=for-the-badge"></a>
 </p>
 
 ---
@@ -57,10 +55,10 @@
 <p align="center"><img src="images/product_seller_performance.png" width="1000"></p>
 </details>
 
-<a id="dash-ops"></a>
+<a id="dash-model"></a>
 <details>
-<summary><b>🔹 Operational Matrix</b> — p.5 (returns, delivery, brand-level detail)</summary>
-<p align="center"><img src="images/operational_matrix.png" width="1000"></p>
+<summary><b>🔹 Data Model</b> — Star Schema with Dynamic RLS (region_security_table)</summary>
+<p align="center"><img src="images/data_model.png" width="1000"></p>
 </details>
 
 ---
@@ -172,8 +170,8 @@ Three PDFs, three different slicer states, same field-parameter page. Read left-
 
 | | |
 |---|---|
-| 📌 **WHAT** | On both the 2025 YTD and August operational matrix (p.5), the visible brand-level rows sum to more than the displayed total row. |
-| 🎯 **WHY** | This points to a hierarchy or semantic-model issue (likely double-counting in the brand dimension) rather than a display bug, and it undermines confidence in any brand-level contribution analysis pulled from this page. |
+| 📌 **WHAT** | On both the 2025 YTD and August operational views, the visible brand-level rows sum to more than the displayed total row. |
+| 🎯 **WHY** | This points to a hierarchy or semantic-model issue (likely double-counting in the brand dimension) rather than a display bug, and it undermines confidence in any brand-level contribution analysis pulled from this table. |
 | 🛠️ **ACTION** | Implement a row-to-total reconciliation check (brand rows must sum to category and grand totals) before publishing any brand-specific analysis from this table. |
 | ⚠️ **RISK** | Until reconciled, any business decision citing a specific brand's revenue or profit contribution from this page carries an unverified number. |
 
