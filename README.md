@@ -64,7 +64,7 @@
 ---
 
 ## 📑 Table of Contents
-[Dashboard Switcher](#-dashboard-page-switcher) · [Headline KPIs](#-headline-kpi-snapshot) · [Objective](#-business-objective) · [Revenue Engine Map](#-whats-driving-27198m-in-2025-ytd-revenue) · [Business Insights](#-business-insights-insight--action--risk) · [Priority Matrix](#-recommendation-priority-matrix) · [KPI Framework](#-recommended-kpi-framework-going-forward) · [Author](#-author)
+[Dashboard Switcher](#-dashboard-page-switcher) · [Headline KPIs](#-headline-kpi-snapshot) · [Objective](#-business-objective) · [Revenue Engine Map](#-whats-driving-27198m-in-2025-ytd-revenue) · [Business Insights](#-business-insights-insight--action--risk) · [Priority Matrix](#-recommendation-priority-matrix) · [Expected Impact](#-expected-business-impact) · [Author](#-author)
 
 ---
 
@@ -198,16 +198,18 @@ Four things are driving growth at once — and only one of them (margin) is curr
 
 ---
 
-## 📈 Recommended KPI Framework Going Forward
+## 📈 Expected Business Impact
 
-| Domain | Primary KPI | Diagnostic KPI | Guardrail |
+| KPI | Current (2025 YTD) | Target | Business Impact |
 |---|---|---|---|
-| Revenue | Net Revenue | Orders × AOV | Gross Margin |
-| Customers | Repeat Purchase Rate | Time to 2nd Order | Churn Rate L6M |
-| Product | Gross Profit | Units / Order | Return Rate |
-| Discount | Gross Profit After Discount | Incremental Units | Discount % |
-| Region | Net Revenue | AOV / Customer | Return & Delivery Rate |
-| Seller | Contribution Profit | Order Volume | Returns / Delivery Failures |
+| Gross Margin | 15.39% | 16.0%+ | ~$1.6M+ incremental gross profit on the current YTD revenue base |
+| Prime Revenue Share | 33.5% | 40%+ | Shift toward a higher-LTV customer mix via conversion |
+| Churn Rate (L6M) | 7.04% | <6.0% | ~1,200+ additional customers retained over a 6-month window |
+| Avg Revenue per Customer (L6M) | $1.84K | $2.1K+ | ~14% more revenue per customer from repeat & frequency programs |
+| Delivered Order Rate (Electronics) | 84.92% | 90%+ | ~5,000+ additional successful deliveries at current YTD order volume |
+| Return Rate (Electronics) | 0.74% | <0.60% | Meaningful reduction in return-handling cost at scale |
+
+*Targets and impact figures are directional estimates derived from the dashboard's own volumes and ratios — meant to prioritize action, not substitute for a full elasticity or cohort test before use in budgeting.*
 
 ---
 
